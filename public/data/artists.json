@@ -1,0 +1,101 @@
+[
+    {
+      "id": 1,
+      "name": "Jane Doe",
+      "category": "Singer",
+      "priceRange": "$500-$1000",
+      "location": "Mumbai",
+      "languages": ["English", "Hindi"],
+      "image": "../images/jane.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Arjun Mehra",
+        "category": "Guitarist",
+        "priceRange": "$300-$800",
+        "location": "Delhi",
+        "languages": ["Hindi", "Punjabi"],
+        "image": "../images/jane.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Sara Fernandes",
+        "category": "DJ",
+        "priceRange": "$1000-$1500",
+        "location": "Goa",
+        "languages": ["English"],
+        "image": "../images/jane.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Ravi Patel",
+        "category": "Stand-up Comedian",
+        "priceRange": "$400-$900",
+        "location": "Ahmedabad",
+        "languages": ["Hindi", "Gujarati"],
+        "image": "../images/jane.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Neha Sharma",
+        "category": "Dancer",
+        "priceRange": "$600-$1200",
+        "location": "Pune",
+        "languages": ["Hindi", "English", "Marathi"],
+        "image": "../images/jane.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Kabir Khan",
+        "category": "Anchor",
+        "priceRange": "$500-$1000",
+        "location": "Hyderabad",
+        "languages": ["English", "Telugu", "Hindi"],
+        "image": "../images/jane.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Aisha Malik",
+        "category": "Violinist",
+        "priceRange": "$700-$1300",
+        "location": "Chennai",
+        "languages": ["English", "Tamil"],
+        "image": "../images/jane.jpg"
+      },
+      {
+        "id": 8,
+        "name": "Devansh Roy",
+        "category": "Magician",
+        "priceRange": "$450-$900",
+        "location": "Kolkata",
+        "languages": ["Bengali", "Hindi", "English"],
+        "image": "../images/jane.jpg"
+      },
+      {
+        "id": 9,
+        "name": "Meera Joshi",
+        "category": "Painter (Live Art)",
+        "priceRange": "$600-$1100",
+        "location": "Jaipur",
+        "languages": ["Hindi", "English"],
+        "image": "../images/jane.jpg"
+      },
+      {
+        "id": 10,
+        "name": "Vikram Iyer",
+        "category": "Keyboardist",
+        "priceRange": "$350-$750",
+        "location": "Bangalore",
+        "languages": ["Kannada", "English", "Hindi"],
+        "image": "../images/jane.jpg"
+      },
+      {
+        "id": 11,
+        "name": "Simran Kaur",
+        "category": "Folk Singer",
+        "priceRange": "$800-$1400",
+        "location": "Amritsar",
+        "languages": ["Punjabi", "Hindi"],
+        "image": "../images/jane.jpg"
+      }
+  ]

@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "name": "Jane Doe",
+      "category": ["Singer", "Dancer"],
+      "location": "Mumbai",
+      "feeRange": "$500 - $1000",
+      "bio": "Versatile performer for all occasions.",
+      "languages": ["English", "Hindi"],
+      "image": "/images/jane.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Rahul Singh",
+      "category": ["DJ"],
+      "location": "Delhi",
+      "feeRange": "$1000 - $5000",
+      "bio": "Top DJ in Delhi.",
+      "languages": ["Hindi", "English"],
+      "image": "/images/jane.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Asha Patel",
+      "category": ["Speaker"],
+      "location": "Ahmedabad",
+      "feeRange": "$500 - $1000",
+      "bio": "Motivational speaker with 10+ years of experience.",
+      "languages": ["Gujarati", "Hindi"],
+      "image": "/images/jane.jpg"
+    }
+  ]
+  

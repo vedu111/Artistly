@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ShortlistProvider } from "./context/ShortlistContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import { Suspense } from "react";
+import AppPageTransition from "./components/AppPageTransition";
+import Loader from "./components/Loader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,12 +27,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // You may need to get the current path from props or context if you want unique keys for transitions
+  const path = typeof window !== "undefined" ? window.location.pathname : "page";
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" className="dark">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ThemeProvider>
+          <ShortlistProvider>
+            <Suspense fallback={<Loader />}>
+              <AppPageTransition path={path}>
+                {children}
+              </AppPageTransition>
+            </Suspense>
+          </ShortlistProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
