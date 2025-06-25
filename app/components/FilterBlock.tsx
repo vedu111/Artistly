@@ -1,5 +1,18 @@
 "use client";
-import { useState } from "react";
+
+interface Filters {
+  category: string;
+  location: string;
+  priceRange: string;
+}
+
+interface FilterBlockProps {
+  categories: string[];
+  locations: string[];
+  priceRanges: string[];
+  filters: Filters;
+  setFilters: (f: Filters) => void;
+}
 
 export default function FilterBlock({
   categories,
@@ -7,13 +20,7 @@ export default function FilterBlock({
   priceRanges,
   filters,
   setFilters,
-}: {
-  categories: string[];
-  locations: string[];
-  priceRanges: string[];
-  filters: any;
-  setFilters: (f: any) => void;
-}) {
+}: FilterBlockProps) {
   return (
     <div className="flex flex-wrap gap-4 mb-6">
       {/* Category Filter */}

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import ArtistCard from "../components/ArtistCard";
+import ArtistCard, { Artist } from "../components/ArtistCard";
 import FilterBlock from "../components/FilterBlock";
 import Header from "../components/Header";
 import dynamic from "next/dynamic";
@@ -12,7 +12,6 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import {
   Search,
-  Filter,
   Grid3X3,
   List,
   Star,
@@ -26,10 +25,7 @@ import {
   Mic,
   Speaker,
   Disc,
-  Calendar,
-  Clock,
-  Award,
-  TrendingUp
+  Calendar
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -57,8 +53,8 @@ const categoryIcons = {
 };
 
 export default function ArtistsPage() {
-  const [artists, setArtists] = useState<any[]>([]);
-  const [filtered, setFiltered] = useState<any[]>([]);
+  const [artists, setArtists] = useState<Artist[]>([]);
+  const [filtered, setFiltered] = useState<Artist[]>([]);
   const [filters, setFilters] = useState({
     category: "",
     location: "",
@@ -68,13 +64,12 @@ export default function ArtistsPage() {
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState<'name' | 'rating' | 'price' | 'popular'>('popular');
-  const [showFilters, setShowFilters] = useState(false);
 
   // Fetch artists data from JSON
   useEffect(() => {
     fetch("/data/artists.json")
       .then(res => res.json())
-      .then(data => {
+      .then((data: Artist[]) => {
         setArtists(data);
         setFiltered(data);
         setLoading(false);
@@ -89,12 +84,10 @@ export default function ArtistsPage() {
   // Enhanced filter logic with search and sorting
   useEffect(() => {
     let result = artists;
-    
     // Apply filters
     if (filters.category) result = result.filter(a => a.category === filters.category);
     if (filters.location) result = result.filter(a => a.location === filters.location);
     if (filters.priceRange) result = result.filter(a => a.priceRange === filters.priceRange);
-    
     // Apply search
     if (searchTerm) {
       result = result.filter(a => 
@@ -103,7 +96,6 @@ export default function ArtistsPage() {
         a.location.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-    
     // Apply sorting
     result = [...result].sort((a, b) => {
       switch (sortBy) {
@@ -112,13 +104,12 @@ export default function ArtistsPage() {
         case 'rating':
           return (b.rating || 0) - (a.rating || 0);
         case 'price':
-          return parseFloat(a.price?.replace(/[^0-9]/g, '') || '0') - parseFloat(b.price?.replace(/[^0-9]/g, '') || '0');
+          return parseFloat((a.priceRange || '').replace(/[^0-9]/g, '') || '0') - parseFloat((b.priceRange || '').replace(/[^0-9]/g, '') || '0');
         case 'popular':
         default:
           return (b.bookings || 0) - (a.bookings || 0);
       }
     });
-    
     setFiltered(result);
   }, [filters, artists, searchTerm, sortBy]);
 
@@ -371,7 +362,7 @@ export default function ArtistsPage() {
                         animate="animate"
                         transition={{ delay: index * 0.05 }}
                       >
-                        <ArtistCard artist={artist} viewMode={viewMode} />
+                        <ArtistCard artist={artist} />
                       </motion.div>
                     ))}
                   </motion.div>

@@ -6,7 +6,7 @@
       "priceRange": "$500-$1000",
       "location": "Mumbai",
       "languages": ["English", "Hindi"],
-      "image": "../images/jane.jpg"
+      "image": "/images/jane.jpg"
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@
         "priceRange": "$300-$800",
         "location": "Delhi",
         "languages": ["Hindi", "Punjabi"],
-        "image": "../images/jane.jpg"
+        "image": "/images/jane.jpg"
       },
       {
         "id": 3,
@@ -24,7 +24,7 @@
         "priceRange": "$1000-$1500",
         "location": "Goa",
         "languages": ["English"],
-        "image": "../images/jane.jpg"
+        "image": "/images/jane.jpg"
       },
       {
         "id": 4,
@@ -33,7 +33,7 @@
         "priceRange": "$400-$900",
         "location": "Ahmedabad",
         "languages": ["Hindi", "Gujarati"],
-        "image": "../images/jane.jpg"
+        "image": "/images/jane.jpg"
       },
       {
         "id": 5,
@@ -42,7 +42,7 @@
         "priceRange": "$600-$1200",
         "location": "Pune",
         "languages": ["Hindi", "English", "Marathi"],
-        "image": "../images/jane.jpg"
+        "image": "/images/jane.jpg"
       },
       {
         "id": 6,
@@ -51,7 +51,7 @@
         "priceRange": "$500-$1000",
         "location": "Hyderabad",
         "languages": ["English", "Telugu", "Hindi"],
-        "image": "../images/jane.jpg"
+        "image": "/images/jane.jpg"
       },
       {
         "id": 7,
@@ -60,7 +60,7 @@
         "priceRange": "$700-$1300",
         "location": "Chennai",
         "languages": ["English", "Tamil"],
-        "image": "../images/jane.jpg"
+        "image": "/images/jane.jpg"
       },
       {
         "id": 8,
@@ -69,7 +69,7 @@
         "priceRange": "$450-$900",
         "location": "Kolkata",
         "languages": ["Bengali", "Hindi", "English"],
-        "image": "../images/jane.jpg"
+        "image": "/images/jane.jpg"
       },
       {
         "id": 9,
@@ -78,7 +78,7 @@
         "priceRange": "$600-$1100",
         "location": "Jaipur",
         "languages": ["Hindi", "English"],
-        "image": "../images/jane.jpg"
+        "image": "/images/jane.jpg"
       },
       {
         "id": 10,
@@ -87,7 +87,7 @@
         "priceRange": "$350-$750",
         "location": "Bangalore",
         "languages": ["Kannada", "English", "Hindi"],
-        "image": "../images/jane.jpg"
+        "image": "/images/jane.jpg"
       },
       {
         "id": 11,
@@ -96,6 +96,6 @@
         "priceRange": "$800-$1400",
         "location": "Amritsar",
         "languages": ["Punjabi", "Hindi"],
-        "image": "../images/jane.jpg"
+        "image": "/images/jane.jpg"
       }
   ]
