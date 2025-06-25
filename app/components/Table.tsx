@@ -78,9 +78,9 @@ export default function Table<T>({ columns, data, onAction, actionLabel }: Table
                           className="p-4 align-middle [&:has([role=checkbox])]:pr-0 first:pl-6 last:pr-6"
                         >
                           <div className="text-sm font-medium">
-                            {Array.isArray((row as any)[col.accessor]) 
-                              ? (row as any)[col.accessor].join(", ") 
-                              : (row as any)[col.accessor] || "—"
+                            {Array.isArray(row[col.accessor as keyof T])
+                              ? (row[col.accessor as keyof T] as unknown as string[]).join(", ")
+                              : (row[col.accessor as keyof T] as unknown as string) || "—"
                             }
                           </div>
                         </td>

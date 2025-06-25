@@ -9,8 +9,6 @@ export interface Artist {
   location: string;
   languages: string[];
   image: string;
-  // Accept extra props for forward compatibility
-  [key: string]: any;
 }
 
 function getImageSrc(image: string) {

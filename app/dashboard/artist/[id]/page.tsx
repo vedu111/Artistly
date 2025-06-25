@@ -26,10 +26,21 @@ import Image from "next/image";
 
 const Footer = dynamic(() => import("../../../components/Footer"), { ssr: false });
 
+interface Artist {
+  id: number;
+  name: string;
+  category: string[] | string;
+  location: string;
+  feeRange: string;
+  bio?: string;
+  languages?: string[];
+  image?: string;
+}
+
 export default function ArtistDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
   const unwrappedParams = React.use(params);
-  const [artist, setArtist] = useState<any | null>(null);
+  const [artist, setArtist] = useState<Artist | null>(null);
   const [loading, setLoading] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -37,7 +48,7 @@ export default function ArtistDetailPage({ params }: { params: Promise<{ id: str
     fetch("/data/onboardArtists.json")
       .then(res => res.json())
       .then((data) => {
-        const found = data.find((a: any) => a.id === Number(unwrappedParams.id));
+        const found = data.find((a: Artist) => a.id === Number(unwrappedParams.id));
         setArtist(found || null);
         setLoading(false);
       })

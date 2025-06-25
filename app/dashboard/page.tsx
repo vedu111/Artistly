@@ -241,7 +241,7 @@ export default function DashboardPage() {
                   {searchTerm && (
                     <div className="flex items-center gap-2">
                       <Search className="h-4 w-4 text-gray-400 dark:text-zinc-500" />
-                      <span className="text-gray-600 dark:text-zinc-300">Search: "{searchTerm}"</span>
+                      <span className="text-gray-600 dark:text-zinc-300">Search: &quot;{searchTerm}&quot;</span>
                     </div>
                   )}
                   {selectedCategory !== "all" && (

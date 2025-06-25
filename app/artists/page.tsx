@@ -282,7 +282,7 @@ export default function ArtistsPage() {
                 <div className="relative">
                   <select
                     value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value as any)}
+                    onChange={(e) => setSortBy(e.target.value as 'name' | 'rating' | 'price' | 'popular')}
                     className="appearance-none bg-white dark:bg-zinc-800 border border-gray-300 dark:border-zinc-600 rounded-lg px-4 py-2 pr-8 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary"
                   >
                     <option value="popular">Most Popular</option>
