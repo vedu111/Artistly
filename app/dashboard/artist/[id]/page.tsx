@@ -12,19 +12,15 @@ import {
   Languages, 
   Star, 
   Award, 
-  Calendar,
-  Phone,
-  Mail,
-  Globe,
   ArrowLeft,
   Check,
   X,
   Heart,
   Share2,
-  Camera,
-  Music,
   Mic,
-  Palette
+  Palette,
+  Music,
+  Globe
 } from "lucide-react";
 
 const Footer = dynamic(() => import("../../../components/Footer"), { ssr: false });

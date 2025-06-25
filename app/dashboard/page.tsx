@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import { 
   Users, 
   TrendingUp, 
-  Calendar, 
   DollarSign, 
   MapPin, 
   Filter,
@@ -108,7 +107,7 @@ export default function DashboardPage() {
     
     // Category filter - matches if "all" is selected OR if artist's category matches selected category
     const matchesCategory = selectedCategory === "all" || 
-      (Array.isArray(artist.category) ? artist.category.includes(selectedCategory) : (artist.category || '').toString() === selectedCategory);
+      (Array.isArray(artist.category) ? artist.category.includes(selectedCategory) : String(artist.category || '') === selectedCategory);
     
     return matchesSearch && matchesCategory;
   });
