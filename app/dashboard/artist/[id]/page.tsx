@@ -22,6 +22,7 @@ import {
   Music,
   Globe
 } from "lucide-react";
+import Image from "next/image";
 
 const Footer = dynamic(() => import("../../../components/Footer"), { ssr: false });
 
@@ -67,7 +68,7 @@ export default function ArtistDetailPage({ params }: { params: Promise<{ id: str
               <X className="w-8 h-8 text-red-500" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Artist Not Found</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">The artist you're looking for doesn't exist.</p>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">The artist you&apos;re looking for doesn&apos;t exist.</p>
             <Button onClick={() => router.push("/dashboard")} variant="outline">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Dashboard
@@ -146,7 +147,7 @@ export default function ArtistDetailPage({ params }: { params: Promise<{ id: str
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-all duration-500"></div>
                   <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white dark:border-zinc-700 shadow-2xl group-hover:scale-105 transition-all duration-300">
-                    <img
+                    <Image
                       src={artist.image || "/globe.svg"}
                       alt={artist.name}
                       className="w-full h-full object-cover"
