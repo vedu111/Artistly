@@ -101,13 +101,10 @@ export default function ArtistsPage() {
       switch (sortBy) {
         case 'name':
           return a.name.localeCompare(b.name);
-        case 'rating':
-          return (b.rating || 0) - (a.rating || 0);
         case 'price':
           return parseFloat((a.priceRange || '').replace(/[^0-9]/g, '') || '0') - parseFloat((b.priceRange || '').replace(/[^0-9]/g, '') || '0');
-        case 'popular':
         default:
-          return (b.bookings || 0) - (a.bookings || 0);
+          return a.name.localeCompare(b.name);
       }
     });
     setFiltered(result);
