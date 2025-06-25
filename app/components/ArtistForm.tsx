@@ -2,7 +2,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -28,6 +28,7 @@ import {
   Clock
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const categories = [
   { id: "Singer", label: "Singer", icon: <Music className="w-4 h-4" />, color: "from-pink-500 to-rose-500" },
@@ -74,7 +75,7 @@ const fadeInUp = {
 };
 
 export default function ArtistForm() {
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -104,7 +105,7 @@ export default function ArtistForm() {
   const watchedFields = watch();
   const progress = Math.round((currentStep / steps.length) * 100);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: Record<string, unknown>) => {
     setIsSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 2000));
     console.log("Artist Submission:", data);
@@ -116,12 +117,12 @@ export default function ArtistForm() {
     window.location.href = "/";
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setValue("image", file);
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
+      reader.onloadend = () => setImagePreview(typeof reader.result === 'string' ? reader.result : null);
       reader.readAsDataURL(file);
     } else {
       setImagePreview(null);
@@ -142,7 +143,7 @@ export default function ArtistForm() {
     }
   };
 
-  const getFieldsForStep = (step) => {
+  const getFieldsForStep = (step: number): ("name" | "bio" | "image" | "category" | "languages" | "feeRange" | "location")[] => {
     switch (step) {
       case 1: return ["name", "bio", "image"];
       case 2: return ["category", "languages"];
@@ -162,7 +163,7 @@ export default function ArtistForm() {
               </div>
               <h3 className="text-2xl font-bold mb-2">Tell us about yourself</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Let's start with your basic information and photo
+                Let&apos;s start with your basic information and photo
               </p>
             </div>
 
@@ -203,7 +204,7 @@ export default function ArtistForm() {
                   </p>
                 ) : (
                   <p className="text-gray-500 text-sm">
-                    {watchedFields.bio?.length || 0} characters (minimum 50)
+                    {watchedFields.bio && Array.isArray(watchedFields.bio) ? watchedFields.bio.length : 0} characters (minimum 50)
                   </p>
                 )}
               </div>
@@ -218,9 +219,11 @@ export default function ArtistForm() {
                 <div className="flex-shrink-0">
                   {imagePreview ? (
                     <div className="relative">
-                      <img
-                        src={imagePreview}
+                      <Image
+                        src={typeof imagePreview === 'string' ? imagePreview : ''}
                         alt="Preview"
+                        width={96}
+                        height={96}
                         className="w-24 h-24 rounded-full object-cover border-4 border-primary/20"
                       />
                       <button
@@ -291,19 +294,19 @@ export default function ArtistForm() {
                         whileTap={{ scale: 0.98 }}
                       >
                         <label className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all ${
-                          field.value.includes(cat.id)
+                          (field.value && Array.isArray(field.value) ? field.value : []).includes(cat.id)
                             ? 'border-primary bg-primary/5'
                             : 'border-gray-200 dark:border-zinc-700 hover:border-primary/50'
                         }`}>
                           <input
                             type="checkbox"
                             value={cat.id}
-                            checked={field.value.includes(cat.id)}
+                            checked={(field.value && Array.isArray(field.value) ? field.value : []).includes(cat.id)}
                             onChange={(e) => {
                               if (e.target.checked) {
-                                field.onChange([...field.value, cat.id]);
+                                field.onChange([...(field.value && Array.isArray(field.value) ? field.value : []), cat.id]);
                               } else {
-                                field.onChange(field.value.filter((v) => v !== cat.id));
+                                field.onChange((field.value && Array.isArray(field.value) ? field.value : []).filter((v) => v !== cat.id));
                               }
                             }}
                             className="sr-only"
@@ -314,7 +317,7 @@ export default function ArtistForm() {
                           <div className="flex-1">
                             <div className="font-semibold">{cat.label}</div>
                           </div>
-                          {field.value.includes(cat.id) && (
+                          {(field.value && Array.isArray(field.value) ? field.value : []).includes(cat.id) && (
                             <Check className="w-5 h-5 text-primary" />
                           )}
                         </label>
@@ -348,26 +351,26 @@ export default function ArtistForm() {
                         whileTap={{ scale: 0.95 }}
                       >
                         <label className={`flex items-center px-4 py-2 rounded-full border-2 cursor-pointer transition-all ${
-                          field.value.includes(lang.id)
+                          (field.value && Array.isArray(field.value) ? field.value : []).includes(lang.id)
                             ? 'border-primary bg-primary/5 dark:bg-zinc-900 dark:border-primary'
                             : 'border-gray-200 dark:border-zinc-700 hover:border-primary/50'
                         } dark:text-zinc-100`}>
                           <input
                             type="checkbox"
                             value={lang.id}
-                            checked={field.value.includes(lang.id)}
+                            checked={(field.value && Array.isArray(field.value) ? field.value : []).includes(lang.id)}
                             onChange={(e) => {
                               if (e.target.checked) {
-                                field.onChange([...field.value, lang.id]);
+                                field.onChange([...(field.value && Array.isArray(field.value) ? field.value : []), lang.id]);
                               } else {
-                                field.onChange(field.value.filter((v) => v !== lang.id));
+                                field.onChange((field.value && Array.isArray(field.value) ? field.value : []).filter((v) => v !== lang.id));
                               }
                             }}
                             className="sr-only"
                           />
                           <span className="mr-2">{lang.flag}</span>
                           <span className="font-medium">{lang.label}</span>
-                          {field.value.includes(lang.id) && (
+                          {(field.value && Array.isArray(field.value) ? field.value : []).includes(lang.id) && (
                             <Check className="w-4 h-4 ml-2" />
                           )}
                         </label>
